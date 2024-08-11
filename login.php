@@ -12,42 +12,45 @@
         //stocker utilisateur
 
         if($user) {
-            //on va le connecter => session
+            //on va le connecter => session utilisateur reste connectée à chaque page
+            $_SESSION['user'] = $user;
+            header('location: index.php');
         }
         else {
             //afficher une erreur.
             $errors[] ="Email ou mot de passe incorrect";
         }
-
+    var_dump($_SESSION);
     }
 
 ?>
-    
-    <div class="container col-xxl-8 px-3 py-5">
-        <h1>Se connecter</h1>
 
-        <?php
+<div class="container col-xxl-8 px-3 py-5">
+    <h1>Se connecter</h1>
+
+    <?php
             //appeler les erreurs
             foreach ($errors as $error) {?>
-            <div class="alert alert-danger" role="alert"> <!-- raccourci echo ?=-->
-                <?=$error; ?>
-            </div>
-            <?php }
+    <div class="alert alert-danger" role="alert">
+        <!-- raccourci echo ?=-->
+        <?=$error; ?>
+    </div>
+    <?php }
         ?>
 
-        <form method="post" action="">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">password</label>
-                <input type="password" name="password" class="form-control">
-            </div>
+    <form method="post" action="">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">password</label>
+            <input type="password" name="password" class="form-control">
+        </div>
 
-            <input type="submit" name="loginUser" value="Connexion" class="btn btn-primary">
+        <input type="submit" name="loginUser" value="Connexion" class="btn btn-primary">
 
-        </form>
-    </div>
+    </form>
+</div>
 
 <?php require_once __DIR__."/templates/footer.php" ?>

@@ -1,6 +1,6 @@
 <?php
 
-#vérifier le login et le mot de passe de l'utilisateursont bien dans la base de données
+#vérifier le login et le mot de passe de l'utilisateur sont bien dans la base de données
 function verifyUserLoginPassword (PDO $pdo, string $email, string $password):bool|array
 {
     $query = $pdo->prepare("SELECT * FROM user WHERE email = :email"); //récupérer l'utilisateur par l'email
